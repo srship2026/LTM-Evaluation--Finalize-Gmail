@@ -1,6 +1,6 @@
 // Your live API URL
 
-const API_BASE = "https://ltm-evaluation-finalize-gmail.vercel.app/api/auth/verify";
+const API_BASE = "https://kiron-extension-auth.vercel.app/api/auth/verify";
 
 // Listen when popup or content script sends email
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -28,5 +28,6 @@ async function verifyEmail(email) {
         return { success: false, message: "Server Error" };
     }
 }
+
 
 
