@@ -7,16 +7,15 @@ export default function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  // ইমেইল এবং অ্যাপ আইডি উভয়ই গ্রহণ করবে
-  const { email, appId } = req.query;
+  const { email, appId } = req.query; // appId রিসিভ করছে
 
   if (!email || !appId) {
     return res.status(400).json({ success: false, message: "Email and AppID are required" });
   }
 
-  // চেক করবে এই অ্যাপ আইডির জন্য এই ইমেইলটি অনুমোদিত কি না
-  const appAllowedList = allowedData.apps[appId];
-  const isAllowed = appAllowedList && appAllowedList.includes(email);
+  // চেক করবে এই অ্যাপের আন্ডারে এই ইমেইলটি আছে কি না
+  const appList = allowedData.apps[appId];
+  const isAllowed = appList && appList.includes(email);
 
   if (isAllowed) {
     return res.status(200).json({ success: true, allowed: true });
